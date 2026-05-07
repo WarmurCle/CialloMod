@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bnrfgfj"]
+
+[ext_resource type="Texture2D" uid="uid://dhywi3upwo1pt" path="res://images/atlases/card_atlas.sprites/colorless/ciallo_strike.png" id="1_ojehd"]
+
+[resource]
+atlas = ExtResource("1_ojehd")
