@@ -39,15 +39,21 @@ namespace CialloMod
         [HarmonyPrefix]
         public static bool Prefix(string sfx, float volume)
         {
-            if(sfx == "RANDOMCIALLOSND")
+            try
             {
-                sfx = $"res://CialloMod/assets/audio/cia{new Random().Next(10).ToString()}.mp3";
+                if (sfx == "RANDOMCIALLOSND")
+                {
+                    sfx = $"res://CialloMod/assets/audio/cia{new Random().Next(10).ToString()}.mp3";
+                }
+                if (sfx.StartsWith("res://CialloMod"))
+                {
+                    var ss = new AutoModAudio("res://").PlaySfx(sfx.Replace("res://CialloMod/", ""), 0, volume, 0, 1);
+                    if (ss != null)
+                        ss.PitchScale = 1;
+                    return false;
+                }
             }
-            if (sfx.StartsWith("res://CialloMod"))
-            {
-                new AutoModAudio("res://").PlaySfx(sfx.Replace("res://CialloMod/", ""), 0, volume, 0, 1).PitchScale = 1;
-                return false;
-            }
+            catch { }
             return true;
         }
     }
